@@ -680,6 +680,28 @@ export const TicketModal: React.FC<TicketModalProps> = ({ isOpen, onClose, ticke
                                 </div>
                              )}
 
+                             {/* Sprint (only for Scrum boards) */}
+                             {activeBoard?.type === 'scrum' && (
+                                <div className="space-y-1.5">
+                                    <label className="text-xs font-semibold text-gray-500 block">Sprint</label>
+                                    <div className="relative">
+                                        <select 
+                                            className="w-full bg-gray-50 hover:bg-white border border-gray-200 text-sm font-medium rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 cursor-pointer appearance-none transition-colors truncate pr-8"
+                                            value={formData.sprint_id || ''}
+                                            onChange={e => setFormData({...formData, sprint_id: e.target.value || null})}
+                                        >
+                                            <option value="">Backlog</option>
+                                            {sprints.map(sprint => (
+                                                <option key={sprint.id} value={sprint.id}>
+                                                    {sprint.name}
+                                                </option>
+                                            ))}
+                                        </select>
+                                        <ChevronDown size={14} className="text-gray-400 absolute right-3 top-3 pointer-events-none" />
+                                    </div>
+                                </div>
+                             )}
+
                             {/* Assignee */}
                             <div className="space-y-1.5">
                                 <label className="text-xs font-semibold text-gray-500 block">Assignee</label>
