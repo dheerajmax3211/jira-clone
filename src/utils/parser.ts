@@ -27,12 +27,21 @@ interface ParsedResult {
   };
 }
 
+// TODO: Refactor this function into smaller, more manageable functions.
+// This function is doing a lot of things: parsing JSON, processing boards,
+// processing sprints, and processing tickets. It would be better to break it
+// down into smaller functions, each with a single responsibility.
+// For example, you could have `parseBoards`, `parseSprints`, and `parseTickets` functions.
 export const parseJsonImport = (jsonString: string, currentBoardId?: string): ParsedResult => {
   let data: ImportData;
   
-  try {
+    try {
     data = JSON.parse(jsonString);
   } catch (e) {
+    // TODO: Improve error handling.
+    // Instead of throwing a generic error, provide more specific information
+    // about what went wrong (e.g., where in the JSON the error occurred).
+    // You could also consider using a JSON schema to validate the input.
     throw new Error("Invalid JSON format");
   }
 
@@ -49,6 +58,10 @@ export const parseJsonImport = (jsonString: string, currentBoardId?: string): Pa
   const ticketMap = new Map<string, string>();
 
   // 1. Process Boards
+    // 1. Process Boards
+  // TODO: Avoid using the `any` type.
+  // Using `any` defeats the purpose of TypeScript. Create interfaces for the
+  // expected shapes of the objects in the JSON data.
   if (data.boards && Array.isArray(data.boards)) {
     data.boards.forEach((b: any) => {
       const newId = crypto.randomUUID();

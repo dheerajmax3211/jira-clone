@@ -25,6 +25,11 @@ export const Board: React.FC<BoardProps> = ({ tickets, allTickets, profiles, act
   const [priorityFilters, setPriorityFilters] = useState<string[]>([]);
 
   // DYNAMIC COLUMN LOGIC
+    // DYNAMIC COLUMN LOGIC
+  // TODO: Improve the column sorting logic.
+  // The current logic uses a simple heuristic to sort columns, which might not be reliable.
+  // A better approach would be to have a predefined order for common statuses
+  // or to allow users to reorder columns and save the order in the database.
   const columns = useMemo(() => {
       if (activeBoard?.columns && activeBoard.columns.length > 0) {
           return activeBoard.columns.map(c => ({...c, color: 'bg-slate-50'}));
@@ -69,6 +74,11 @@ export const Board: React.FC<BoardProps> = ({ tickets, allTickets, profiles, act
   }, [activeBoard, allTickets]);
 
   // Simple HTML5 Drag and Drop implementation
+    // TODO: Consider using a library for drag and drop.
+  // The current implementation uses the native HTML5 drag and drop API, which is a good start.
+  // However, for more complex interactions and better cross-browser compatibility,
+  // consider using a library like react-dnd or dnd-kit.
+  // These libraries provide more features and a more declarative API.
   const handleDragStart = (e: React.DragEvent, ticketId: string) => {
     e.dataTransfer.setData('ticketId', ticketId);
   };
@@ -101,6 +111,10 @@ export const Board: React.FC<BoardProps> = ({ tickets, allTickets, profiles, act
   };
 
   // Combining all the filter logic here
+    // TODO: Simplify filtering logic.
+  // The filtering logic is spread across multiple state variables and a filter function.
+  // This could be simplified by using a single state object for all filters
+  // and by creating a custom hook (e.g., useFilters) to manage the filtering logic.
   const filteredTickets = tickets.filter(t => {
       const matchesText = t.title.toLowerCase().includes(filterText.toLowerCase());
       const matchesAssignee = assigneeFilter === 'all' || t.assignee_id === assigneeFilter;
@@ -183,8 +197,12 @@ export const Board: React.FC<BoardProps> = ({ tickets, allTickets, profiles, act
                              <div className="flex justify-between items-center mb-3">
                                 <span className="text-xs font-bold text-slate-500 uppercase">Issue Type</span>
                                 {typeFilters.length > 0 && <button onClick={() => setTypeFilters([])} className="text-[10px] text-blue-600 hover:underline">Clear</button>}
-                             </div>
+                                                          </div>
                              <div className="flex flex-wrap gap-2 mb-4">
+                                {/* TODO: Make these filters dynamic. */}
+                                {/* The issue types are hardcoded here. It would be better to
+                                    either define them as constants or fetch them from an API
+                                    if they are configurable by the user. */}
                                 {['Story', 'Task', 'Bug', 'Epic'].map(t => (
                                     <button 
                                         key={t}
@@ -201,6 +219,10 @@ export const Board: React.FC<BoardProps> = ({ tickets, allTickets, profiles, act
                                 {priorityFilters.length > 0 && <button onClick={() => setPriorityFilters([])} className="text-[10px] text-blue-600 hover:underline">Clear</button>}
                              </div>
                              <div className="flex flex-wrap gap-2">
+                                {/* TODO: Make these filters dynamic. */}
+                                {/* The priorities are hardcoded here. It would be better to
+                                    either define them as constants or fetch them from an API
+                                    if they are configurable by the user. */}
                                 {['Low', 'Medium', 'High', 'Critical'].map(p => (
                                     <button 
                                         key={p}

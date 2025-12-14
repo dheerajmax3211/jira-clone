@@ -18,6 +18,16 @@ interface TicketModalProps {
   onTicketSelect: (ticket: Ticket) => void;
 }
 
+// TODO: Refactor this component into smaller, more manageable components.
+// This component is very large and handles too many responsibilities.
+// Consider breaking it down into smaller components for:
+// - TicketHeader
+// - TicketDescription
+// - TicketAttachments
+// - TicketComments
+// - TicketHistory
+// - TicketSidebar
+// This will make the code easier to understand, maintain, and test.
 export const TicketModal: React.FC<TicketModalProps> = ({ isOpen, onClose, ticket, allTickets, sprints, profiles, activeBoard, onSave, onDelete, onTicketSelect }) => {
   const [formData, setFormData] = useState<Partial<Ticket>>({});
   const [comments, setComments] = useState<Comment[]>([]);
@@ -85,6 +95,11 @@ export const TicketModal: React.FC<TicketModalProps> = ({ isOpen, onClose, ticke
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+    // TODO: Abstract data fetching logic into a custom hook or service.
+  // The data fetching logic for comments, history, and attachments is mixed
+  // with the component's rendering logic. This should be moved to a custom hook
+  // (e.g., useTicketData) or a service to separate concerns and make the
+  // component more focused on rendering.
   const fetchComments = async (ticketId: string) => {
     if (!isSupabaseConfigured()) { 
         // Local storage fallback
@@ -304,8 +319,12 @@ export const TicketModal: React.FC<TicketModalProps> = ({ isOpen, onClose, ticke
                         <ChevronDown size={14} className="text-gray-400" />
                      </button>
 
-                     {isTypeDropdownOpen && (
+                                          {isTypeDropdownOpen && (
                          <div className="absolute top-full left-0 mt-2 w-48 bg-white border border-gray-200 shadow-xl rounded-lg py-1 z-50 animate-in fade-in slide-in-from-top-1">
+                             {/* TODO: Make these types dynamic. */}
+                             {/* The issue types are hardcoded here. It would be better to
+                                 either define them as constants or fetch them from an API
+                                 if they are configurable by the user. */}
                              {(['Story', 'Task', 'Bug', 'Epic'] as TicketType[]).map(type => (
                                  <button
                                     key={type}

@@ -27,6 +27,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
   const isScrum = activeBoard?.type === 'scrum';
 
   // Close dropdown on click outside
+    // TODO: Abstract click outside logic into a custom hook.
+  // This useEffect hook is used to close the dropdown when clicking outside of it.
+  // This is a common pattern that can be extracted into a reusable custom hook
+  // (e.g., useClickOutside) to make the component cleaner and the logic reusable.
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -49,10 +53,12 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 <div className="w-8 h-8 bg-gradient-to-tr from-blue-600 to-indigo-600 rounded flex items-center justify-center text-white shadow-lg shrink-0">
                     <Box size={16} />
                 </div>
-                <div className="min-w-0">
+                                <div className="min-w-0">
                     <h3 className="font-bold text-slate-100 text-sm leading-tight truncate">
                         {activeBoard ? activeBoard.name : 'Select Project'}
                     </h3>
+                    {/* TODO: Make this text dynamic. */}
+                    {/* This text is currently hardcoded. It should be dynamic based on the project type or some other property of the board. */}
                     <p className="text-[10px] text-slate-500 font-medium truncate">Software Project</p>
                 </div>
             </div>

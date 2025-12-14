@@ -12,6 +12,10 @@ import { Ticket, Sprint, TicketStatus, Profile, Board as BoardType, TicketHistor
 import { AlertCircle, LogOut, User, Search, Check } from 'lucide-react';
 
 export default function App() {
+    // TODO: Refactor state management into custom hooks
+  // This component has a lot of state variables. Consider moving related state
+  // and effects into custom hooks (e.g., useAuth, useTickets, useBoards).
+  // This will make the App component cleaner and easier to understand.
   const [session, setSession] = useState<any>(null);
   const [view, setView] = useState<'board' | 'backlog' | 'settings'>('board');
   const [tickets, setTickets] = useState<Ticket[]>([]);
@@ -69,7 +73,9 @@ export default function App() {
             if (session) {
                 initData(session.user);
             } else {
-                // Clear sensitive data on logout
+                // TODO: Ensure all sensitive data is cleared on logout.
+                // It's good that tickets, profiles, and boards are cleared.
+                // Double-check if any other state should be reset to its initial value.
                 setTickets([]);
                 setProfiles([]); 
                 setBoards([]);
@@ -99,6 +105,11 @@ export default function App() {
     }
   }, []);
 
+    // TODO: Abstract data fetching logic
+  // The fetchData and initData functions contain a lot of logic for both
+  // Supabase and local storage. This could be moved to a separate service or
+  // data layer to simplify the component. This would also make it easier to
+  // test the data fetching logic in isolation.
   const initData = async (user: any) => {
       if (user && isSupabaseConfigured()) {
           try {
@@ -193,10 +204,15 @@ export default function App() {
           }
       }
       setError(null);
+          
     } catch (err: any) {
       console.error('Data fetch error:', err);
       
-      // Specific handling for Schema Cache errors
+      // TODO: Improve error handling and user feedback.
+      // Displaying a generic error message is a good start.
+      // Consider more specific error messages for different failure modes
+      // (e.g., network error, server error, data parsing error).
+      // Also, you could implement a more robust logging mechanism.
       if (err.message?.includes('Could not find the table') || err.message?.includes('schema cache')) {
         setError(
           'Supabase Schema Cache stale. Please go to Supabase Dashboard > Project Settings > API > click "Reload schema cache" button.'
@@ -231,7 +247,10 @@ export default function App() {
       }
   };
 
-  const handleSaveBoard = async (board: Partial<BoardType>) => {
+    const handleSaveBoard = async (board: Partial<BoardType>) => {
+      // TODO: Consider browser compatibility for crypto.randomUUID().
+      // While widely supported, older browsers might not have it.
+      // If broader compatibility is needed, a library like `uuid` could be used.
       const newBoard = {
           ...board,
           id: board.id || crypto.randomUUID(),
