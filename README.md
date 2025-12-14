@@ -14,7 +14,7 @@ A project management tool that tries to be fast and simple. Built because I want
 - **Rich Interaction:** Drag-and-drop, rich text editing (markdown), subtasks.
 - **Team Management:** Add team members (linked via Supabase Auth).
 - **File Attachments:** Upload images/docs.
-- **Import:** Paste markdown to bulk create tickets (super useful with ChatGPT).
+- **Import:** Paste json to bulk create tickets (super useful with ChatGPT).
 - **Offline/Demo Mode:** Works with LocalStorage if you don't want to set up a backend.
 
 ## Tech Stack
@@ -33,7 +33,7 @@ A project management tool that tries to be fast and simple. Built because I want
 
 1.  Clone it:
     ```bash
-    git clone https://github.com/dheeraj-srinivasa/jira-clone.git
+    git clone https://github.com/dheerajmax3211/jira-clone.git
     cd jira-clone
     ```
 
