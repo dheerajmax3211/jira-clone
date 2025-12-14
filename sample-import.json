@@ -1,0 +1,160 @@
+{
+  "boards": [
+    {
+      "id": "b-sample",
+      "name": "E-Commerce Platform Launch",
+      "key": "SHOP",
+      "type": "scrum",
+      "sprints": [
+        {
+          "id": "s-1",
+          "name": "Sprint 1: Core Auth",
+          "status": "active",
+          "goal": "Implement secure login and registration."
+        },
+        {
+          "id": "s-2",
+          "name": "Sprint 2: Catalog & Cart",
+          "status": "future",
+          "goal": "Product browsing and shopping cart mechanics."
+        }
+      ],
+      "tickets": [
+        {
+          "id": "e-1",
+          "title": "User Authentication System",
+          "description": "Epic tracking all work related to user signup, login, and profile management.",
+          "type": "Epic",
+          "status": "In Progress",
+          "priority": "High"
+        },
+        {
+          "id": "e-2",
+          "title": "Shopping Cart & Checkout",
+          "description": "Epic for cart management, order processing, and payments.",
+          "type": "Epic",
+          "status": "Todo",
+          "priority": "Critical"
+        },
+        {
+          "id": "t-1",
+          "title": "Design Login Page UI",
+          "description": "Create high-fidelity mockups for the login screen including error states.",
+          "type": "Task",
+          "status": "Done",
+          "priority": "Medium",
+          "story_points": 3,
+          "parent_id": "e-1",
+          "sprint_id": "s-1"
+        },
+        {
+          "id": "t-2",
+          "title": "Implement JWT Authentication",
+          "description": "Backend implementation of JWT token generation and validation middleware.",
+          "type": "Story",
+          "status": "In Progress",
+          "priority": "High",
+          "story_points": 8,
+          "parent_id": "e-1",
+          "sprint_id": "s-1"
+        },
+        {
+          "id": "t-3",
+          "title": "Fix: Password Reset Link 404",
+          "description": "Clicking the reset link in the email redirects to a broken URL.",
+          "type": "Bug",
+          "status": "Todo",
+          "priority": "Critical",
+          "parent_id": "e-1",
+          "sprint_id": "s-1"
+        },
+        {
+          "id": "t-4",
+          "title": "Product Database Schema",
+          "description": "Define SQL tables for Products, Categories, and Inventory.",
+          "type": "Task",
+          "status": "Todo",
+          "priority": "High",
+          "story_points": 5,
+          "parent_id": "e-2",
+          "sprint_id": "s-2"
+        },
+        {
+          "id": "t-5",
+          "title": "Add to Cart Button Logic",
+          "description": "As a user, I want to add items to my cart so I can purchase them later.",
+          "type": "Story",
+          "status": "Todo",
+          "priority": "Medium",
+          "story_points": 5,
+          "parent_id": "e-2",
+          "sprint_id": "s-2"
+        },
+        {
+          "id": "t-6",
+          "title": "Stripe Integration Research",
+          "description": "Investigate Stripe API documentation and create a POC for payments.",
+          "type": "Task",
+          "status": "Todo",
+          "priority": "Medium",
+          "story_points": 2,
+          "parent_id": "e-2",
+          "sprint_id": "s-2"
+        },
+        {
+          "id": "t-7",
+          "title": "Bug: Mobile Menu Not Closing",
+          "description": "The hamburger menu stays open after clicking a link on mobile devices.",
+          "type": "Bug",
+          "status": "In Progress",
+          "priority": "Low",
+          "sprint_id": "s-1"
+        },
+        {
+          "id": "t-8",
+          "title": "User Profile Settings Page",
+          "description": "Allow users to update their email and avatar.",
+          "type": "Story",
+          "status": "Todo",
+          "priority": "Low",
+          "story_points": 3,
+          "parent_id": "e-1",
+          "sprint_id": "s-2"
+        },
+        {
+            "id": "t-9",
+            "title": "Google OAuth Login",
+            "description": "Add 'Sign in with Google' button.",
+            "type": "Story",
+            "status": "Todo",
+            "priority": "Medium",
+            "story_points": 5,
+            "parent_id": "e-1",
+            "sprint_id": "s-1"
+        },
+        {
+            "id": "t-10",
+            "title": "Session Timeout Handling",
+            "description": "Auto-logout user after 30 mins of inactivity.",
+            "type": "Task",
+            "status": "Todo",
+            "priority": "Low",
+            "story_points": 2,
+            "parent_id": "e-1",
+            "sprint_id": "s-1"
+        },
+         {
+            "id": "t-11",
+            "title": "Checkout Flow Mockups",
+            "description": "Design the 3-step checkout process.",
+            "type": "Task",
+            "status": "Todo",
+            "priority": "High",
+            "story_points": 3,
+            "parent_id": "e-2",
+            "sprint_id": "s-2"
+        }
+      ]
+    }
+  ]
+}

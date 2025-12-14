@@ -1,0 +1,50 @@
+{
+  "boards": [
+    {
+      "id": "b-kanban",
+      "name": "Marketing Kanban",
+      "key": "MKT",
+      "type": "kanban",
+      "columns": [
+        { "id": "Todo", "title": "To Do", "limit": 0 },
+        { "id": "In Progress", "title": "In Progress", "limit": 3 },
+        { "id": "Review", "title": "Review", "limit": 2 },
+        { "id": "Done", "title": "Done", "limit": 0 }
+      ],
+      "tickets": [
+        {
+          "id": "k-1",
+          "title": "Social Media Strategy",
+          "description": "Draft the Q4 social media engagement plan.",
+          "type": "Story",
+          "status": "In Progress",
+          "priority": "High"
+        },
+        {
+          "id": "k-2",
+          "title": "Blog Post: Summer Sale",
+          "description": "Write and publish the announcement for the summer sale.",
+          "type": "Task",
+          "status": "Review",
+          "priority": "Medium"
+        },
+        {
+          "id": "k-3",
+          "title": "Email Campaign",
+          "description": "Design the newsletter template for September.",
+          "type": "Task",
+          "status": "Todo",
+          "priority": "Low"
+        },
+        {
+          "id": "k-4",
+          "title": "SEO Audit",
+          "description": "Review current site rankings and keyword strategy.",
+          "type": "Task",
+          "status": "Done",
+          "priority": "Medium"
+        }
+      ]
+    }
+  ]
+}
